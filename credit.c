@@ -8,10 +8,12 @@ int get_last_digit(long);
 int int_len(long);
 int add_digits(int);
 int get_first_two_digits(long);
+long get_valid_ccn();
+long get_ccn();
 
 int main() 
 {
-    long card_num = 6011111111111117;
+    long card_num = get_valid_ccn();
     bool ok = is_valid(card_num);
     if (!ok) {
         printf("INVALID\n");
@@ -40,6 +42,31 @@ int main()
         }
         break;
     }
+}
+
+long get_valid_ccn()
+{
+    long ccn;
+    // Ask for height until greater than one and less than 8
+    do
+    {
+        ccn = get_ccn();
+    }
+    while (ccn < 0);
+    return ccn;
+}
+
+long get_ccn()
+{
+    // Print prompt
+    printf("Credit Card Number: ");
+    char input[100];
+    // Get input string
+    fgets(input, 100, stdin);
+    long ccn = -1;
+    // Scan input string for integer
+    sscanf(input, "%li", &ccn);
+    return ccn;
 }
 
 bool is_valid(long ccn)
