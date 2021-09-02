@@ -10,6 +10,9 @@ int add_digits(int);
 int get_first_two_digits(long);
 long get_valid_ccn();
 long get_ccn();
+bool is_visa(long);
+bool is_amex(long);
+bool is_mastercard(long);
 
 int main() 
 {
@@ -19,32 +22,63 @@ int main()
         printf("INVALID\n");
         return 0;
     }
-    switch (int_len(card_num))
+    if (is_visa(card_num))
     {
-    case 15:
-        printf("AMEX\n");
-        break;
-    case 13:
         printf("VISA\n");
-        break;
-    case 16:
-        switch (get_first_two_digits(card_num))
-        {
-            case 51:
-            case 52:
-            case 53:
-            case 54:
-            case 55:
-                printf("MASTERCARD\n");
-                break;
-            default:
-                printf("VISA\n");
-        }
-        break;
-    default:
-        printf("INVALID\n");
-        return 0;
     }
+    else if (is_amex(card_num))
+    {
+        printf("AMEX\n");
+    }
+    else if (is_mastercard(card_num))
+    {
+        printf("MASTERCARD\n");
+    }
+    else{
+        printf("INVALID\n");
+    }
+}
+
+bool is_visa(long ccn) {
+    switch (get_first_two_digits(ccn))
+    {
+        case 40:
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+        case 45:
+        case 46:
+        case 47:
+        case 48:
+        case 49:
+            return true;
+    }
+    return false;
+}
+
+bool is_amex(long ccn) {
+    switch (get_first_two_digits(ccn))
+    {
+        case 34:
+        case 37:
+            return true;
+    }
+    return false;
+}
+
+bool is_mastercard(long ccn) {
+    switch (get_first_two_digits(ccn))
+    {
+        case 50:
+        case 51:
+        case 52:
+        case 53:
+        case 54:
+        case 55:
+            return true;
+    }
+    return false;
 }
 
 long get_valid_ccn()
