@@ -18,7 +18,8 @@ int main()
 {
     long card_num = get_valid_ccn();
     bool ok = is_valid(card_num);
-    if (!ok || int_len(card_num) < 13) {
+    if (!ok || int_len(card_num) < 13)
+    {
         printf("INVALID\n");
         return 0;
     }
@@ -34,12 +35,14 @@ int main()
     {
         printf("MASTERCARD\n");
     }
-    else{
+    else
+    {
         printf("INVALID\n");
     }
 }
 
-bool is_visa(long ccn) {
+bool is_visa(long ccn)
+{
     switch (get_first_two_digits(ccn))
     {
         case 40:
@@ -57,7 +60,8 @@ bool is_visa(long ccn) {
     return false;
 }
 
-bool is_amex(long ccn) {
+bool is_amex(long ccn)
+{
     switch (get_first_two_digits(ccn))
     {
         case 34:
@@ -67,7 +71,8 @@ bool is_amex(long ccn) {
     return false;
 }
 
-bool is_mastercard(long ccn) {
+bool is_mastercard(long ccn)
+{
     switch (get_first_two_digits(ccn))
     {
         case 50:
@@ -116,7 +121,7 @@ bool is_valid(long ccn)
     {
         sum_one += add_digits(get_last_digit(ccn_work));
         ccn_work = remove_last_digit(ccn_work);
-        sum_two += add_digits(get_last_digit(ccn_work)*2);
+        sum_two += add_digits(get_last_digit(ccn_work) * 2);
         ccn_work = remove_last_digit(ccn_work);
     }
     return ((sum_one + sum_two) % 10 == 0);
@@ -138,12 +143,12 @@ int add_digits(int orig)
 
 long remove_last_digit(long orig)
 {
-    return orig/10;
+    return orig / 10;
 }
 
 int get_last_digit(long whole)
 {
-    return whole%10;
+    return whole % 10;
 }
 
 int int_len(long num)
