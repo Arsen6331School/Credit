@@ -42,7 +42,7 @@ int main()
         }
         break;
     default:
-        printf("INVALID\n")
+        printf("INVALID\n");
         return 0;
     }
 }
