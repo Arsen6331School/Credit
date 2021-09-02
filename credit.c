@@ -41,6 +41,9 @@ int main()
                 printf("VISA\n");
         }
         break;
+    default:
+        printf("INVALID\n")
+        return 0;
     }
 }
 
