@@ -18,7 +18,7 @@ int main()
 {
     long card_num = get_valid_ccn();
     bool ok = is_valid(card_num);
-    if (!ok) {
+    if (!ok || int_len(card_num) < 13) {
         printf("INVALID\n");
         return 0;
     }
